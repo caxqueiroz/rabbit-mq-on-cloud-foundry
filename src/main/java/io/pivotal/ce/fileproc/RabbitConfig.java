@@ -15,8 +15,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitConfig {
 
-    private static final String QUEUE_NAME = "FILE_PROC_QUEUE";
-    private static final String EXCH_NAME = "FILE_PROC_EXCH";
+    public static final String QUEUE_NAME = "FILE_PROC_QUEUE";
+    public static final String EXCH_NAME = "FILE_PROC_EXCH";
+
 
     @Bean
     Queue queue() {
