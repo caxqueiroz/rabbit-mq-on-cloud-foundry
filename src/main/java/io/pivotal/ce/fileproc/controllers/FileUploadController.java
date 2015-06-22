@@ -21,26 +21,26 @@ public class FileUploadController {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
+
     @RequestMapping(value="/upload", method= RequestMethod.POST)
     public @ResponseBody
-    String handlesFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file){
+    String handlesFileUpload(@RequestParam("file") MultipartFile file){
 
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
                 String content = new String(bytes);
 
-                LOGGER.info("You successfully uploaded " + name + "!");
+                LOGGER.info("You successfully uploaded!");
                 amqpTemplate.convertAndSend(content);
                 LOGGER.info("File content sent!!!");
-
                 return "File sent for processing!!!";
 
             } catch (Exception e) {
-                return "You failed to upload " + name + " => " + e.getMessage();
+                return "You failed to upload file  => " + e.getMessage();
             }
         } else {
-            return "You failed to upload " + name + " because the file was empty.";
+            return "You failed to upload file because the file was empty.";
         }
     }
 

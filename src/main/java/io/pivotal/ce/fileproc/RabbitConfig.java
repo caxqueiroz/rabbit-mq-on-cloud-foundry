@@ -19,8 +19,8 @@ public class RabbitConfig {
     private static final String EXCH_NAME = "FILE_PROC_EXCH";
 
     @Bean
-    org.springframework.amqp.core.Queue queue() {
-        return new Queue(QUEUE_NAME, false);
+    Queue queue() {
+        return new Queue(QUEUE_NAME, true);
     }
 
     @Bean
@@ -36,6 +36,8 @@ public class RabbitConfig {
 
     @Bean
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
-        return new RabbitTemplate(connectionFactory);
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setRoutingKey(QUEUE_NAME);
+        return  rabbitTemplate;
     }
 }
