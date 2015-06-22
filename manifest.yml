@@ -1,0 +1,9 @@
+---
+applications:
+- name: fileproc-rmq
+  memory: 512M
+  instances: 1
+  host: fileproc-rmq
+  path: target/fileprocessing-1.0-SNAPSHOT.jar
+  services:
+    rabbit-files
