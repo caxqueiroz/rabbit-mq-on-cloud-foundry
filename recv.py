@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import pika
-
-connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+credentials = pika.PlainCredentials('guest', 'guest')
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost',credentials=credentials))
 channel = connection.channel()
 print ' [*] Waiting for messages. To exit press CTRL+C'
 def callback(ch, method, properties, body):
